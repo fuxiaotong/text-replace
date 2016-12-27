@@ -3,7 +3,6 @@ package Text::Replace::BaseLib;
 use Test::Base -Base;
 
 use File::Spec ();
-# use Data::Dumper;
 use Cwd qw(cwd);
 
 our @EXPORT = qw(
@@ -13,26 +12,6 @@ our @EXPORT = qw(
 our $doc    = File::Spec->catfile(cwd() || '.', 't/doc');
 our $output = File::Spec->catfile($doc, 'output');
 
-sub parse_cmd ($) {
-    my $cmd = shift;
-    my @cmd;
-    while (1) {
-        if ($cmd =~ /\G\s*"(.*?)"/gmsc) {
-            push @cmd, $1;
-
-        } elsif ($cmd =~ /\G\s*'(.*?)'/gmsc) {
-            push @cmd, $1;
-
-        } elsif ($cmd =~ /\G\s*(\S+)/gmsc) {
-            push @cmd, $1;
-
-        } else {
-            last;
-        }
-    }
-
-    return @cmd;
-}
 
 sub bail_out (@);
 
